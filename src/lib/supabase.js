@@ -3,15 +3,27 @@ import { createClient } from '@supabase/supabase-js'
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables')
-}
+// Create a mock client for demo purposes when env vars are missing
+const createMockClient = () => ({
+  from: () => ({
+    insert: () => Promise.resolve({ data: null, error: null }),
+    select: () => Promise.resolve({ data: [], error: null }),
+    update: () => Promise.resolve({ data: null, error: null })
+  })
+})
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+export const supabase = supabaseUrl && supabaseAnonKey 
+  ? createClient(supabaseUrl, supabaseAnonKey)
+  : createMockClient()
 
 // Database operations for contact submissions
 export const contactService = {
   async submitContact(data) {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      console.log('Demo mode: Contact form submission simulated')
+      return { id: 'demo-' + Date.now() }
+    }
+    
     const { data: result, error } = await supabase
       .from('contact_submissions')
       .insert([data])
@@ -23,6 +35,10 @@ export const contactService = {
   },
 
   async getSubmissions() {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      return []
+    }
+    
     const { data, error } = await supabase
       .from('contact_submissions')
       .select('*')
@@ -33,6 +49,10 @@ export const contactService = {
   },
 
   async markAsRead(id) {
+    if (!supabaseUrl || !supabaseAnonKey) {
+      return
+    }
+    
     const { error } = await supabase
       .from('contact_submissions')
       .update({ read_at: new Date().toISOString() })
