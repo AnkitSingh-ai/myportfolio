@@ -1,8 +1,8 @@
-// Version 3.0 - Complete fix for environment variable handling
+// Version 4.0 - Simple fix for environment variable handling
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-console.log('Supabase Config Check v3.0:', { 
+console.log('Supabase Config Check v4.0:', { 
   hasUrl: !!supabaseUrl, 
   hasKey: !!supabaseAnonKey,
   url: supabaseUrl ? 'present' : 'missing',
@@ -21,19 +21,19 @@ const createMockClient = () => {
   }
 }
 
-// Only create real client if both variables exist
+// Create client based on environment variables
 let supabase
-try {
-  if (supabaseUrl && supabaseAnonKey) {
-    // Dynamic import to avoid errors
-    const { createClient } = await import('@supabase/supabase-js')
+if (supabaseUrl && supabaseAnonKey) {
+  try {
+    // Import Supabase only when needed
+    const { createClient } = require('@supabase/supabase-js')
     supabase = createClient(supabaseUrl, supabaseAnonKey)
     console.log('Real Supabase client created')
-  } else {
+  } catch (error) {
+    console.warn('Error creating Supabase client, using mock:', error)
     supabase = createMockClient()
   }
-} catch (error) {
-  console.warn('Error creating Supabase client, using mock:', error)
+} else {
   supabase = createMockClient()
 }
 
