@@ -40,7 +40,7 @@ export const Header = () => {
 
   const downloadResume = () => {
     const link = document.createElement('a')
-    link.href = '/Ankit%20Singh%20Resume%20latest.pdf'
+    link.href = '/ankit-singh-resume.pdf'
     link.download = 'Ankit_Singh_Resume.pdf'
     link.click()
   }
