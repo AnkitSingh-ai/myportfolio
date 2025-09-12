@@ -60,7 +60,7 @@ export const Hero = () => {
               <div className="w-full h-full bg-gradient-to-br from-slate-800 to-slate-900 rounded-full flex items-center justify-center relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400/20 to-purple-400/20"></div>
                 <img 
-                  src="/profile-photo.jpg" 
+                  src="/my photo.jpeg" 
                   alt="Ankit Singh" 
                   className="w-full h-full object-cover rounded-full relative z-10"
                   onError={(e) => {
