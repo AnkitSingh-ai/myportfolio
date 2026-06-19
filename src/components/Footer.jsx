@@ -84,20 +84,7 @@ export const Footer = () => {
           </div>
 
           {/* Bottom Bar */}
-          <div className="pt-8 border-t border-gray-200 dark:border-gray-800">
-            <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
-              <p className="flex items-center text-gray-600 dark:text-gray-300">
-                <span>© {currentYear} Ankit Singh. Made with</span>
-                <Heart className="mx-2 text-red-500" size={16} />
-                <span>and lots of coffee</span>
-              </p>
-              <div className="flex items-center space-x-4">
-                <p className="text-gray-500 dark:text-gray-400 text-sm">
-                  Built with React, JavaScript & Tailwind CSS
-                </p>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </footer>

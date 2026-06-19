@@ -1,27 +1,30 @@
-import React from 'react'
-import { Calendar, MapPin, Award, Code } from 'lucide-react'
+import React, { useState } from 'react'
+import { Calendar, MapPin, Award, Code, X } from 'lucide-react'
 
 export const Experience = () => {
+  const [selectedPdf, setSelectedPdf] = useState(null)
+
   const experiences = [
     {
-      type: 'education',
-      title: 'Bachelors of Technology',
-      organization: 'JSS Academy Of Technical Education',
-      duration: '2022 - 2026',
-      location: 'Sector 62, Noida',
-      description: 'Pursuing Computer Science with focus on software engineering, web development, and modern programming practices. Building strong foundation in algorithms, data structures, and system design.',
-      achievements: ['7.58 CGPA', 'Active in coding competitions', 'Multiple project implementations', 'Strong academic performance']
-    },
-    {
-      type: 'project',
-      title: 'Personal Project Development',
-      organization: 'Self-Directed Learning',
-      duration: '2024 - Present',
-      location: 'Remote',
-      description: 'Developing full-stack web applications using MERN stack, implementing modern development practices and building real-world solutions.',
-      achievements: ['BlogGen - Full-stack blogging platform', 'Raasta Saathi - Traffic reporting app', 'WanderLust - Tourism booking platform', '15+ completed projects']
+      type: 'internship',
+      title: 'Software Developer Intern',
+      organization: 'Achyls Solution',
+      duration: '22 Sep 2025 - 21 Jan 2026',
+      location: 'Onsite',
+      description: 'Developed custom JIRA plugins to enhance project management workflows and team collaboration. Implemented robust backend solutions and integrated third-party APIs for improved functionality.',
+      achievements: ['Custom JIRA plugin development', 'RESTful API integration', 'Backend optimization', 'Cross-functional collaboration'],
+      certificateUrl: '/internship certificate.png',
+      experienceLetterUrl: '/experince letter.png'
     }
   ]
+
+  const openPdfPreview = (pdfUrl, title) => {
+    setSelectedPdf({ url: pdfUrl, title })
+  }
+
+  const closePdfPreview = () => {
+    setSelectedPdf(null)
+  }
 
   return (
     <section id="experience" className="py-20 bg-gray-50 dark:bg-gray-800">
@@ -30,11 +33,11 @@ export const Experience = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
               <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Academic Excellence & Development Journey
+                Professional Experience
               </span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Building a strong foundation through <span className="font-semibold text-blue-600 dark:text-blue-400">academic excellence</span> and <span className="font-semibold text-purple-600 dark:text-purple-400">hands-on project development</span>
+              Building expertise through <span className="font-semibold text-blue-600 dark:text-blue-400">hands-on internship experience</span> and <span className="font-semibold text-purple-600 dark:text-purple-400">professional development</span>
             </p>
           </div>
 
@@ -50,6 +53,8 @@ export const Experience = () => {
                     {exp.type === 'education' ? (
                       <Award className="text-white" size={24} />
                     ) : exp.type === 'project' ? (
+                      <Code className="text-white" size={24} />
+                    ) : exp.type === 'internship' ? (
                       <Code className="text-white" size={24} />
                     ) : (
                       <Calendar className="text-white" size={24} />
@@ -95,6 +100,27 @@ export const Experience = () => {
                         ))}
                       </ul>
                     </div>
+
+                    {exp.type === 'internship' && (
+                      <div className="mt-6 flex flex-wrap gap-3">
+                        {exp.certificateUrl && (
+                          <button
+                            onClick={() => openPdfPreview(exp.certificateUrl, 'Internship Certificate')}
+                            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium transition-colors duration-300"
+                          >
+                            View Certificate
+                          </button>
+                        )}
+                        {exp.experienceLetterUrl && (
+                          <button
+                            onClick={() => openPdfPreview(exp.experienceLetterUrl, 'Experience Letter')}
+                            className="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-sm font-medium transition-colors duration-300"
+                          >
+                            View Experience Letter
+                          </button>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
@@ -102,6 +128,52 @@ export const Experience = () => {
           </div>
         </div>
       </div>
+
+      {/* PDF Preview Modal */}
+      {selectedPdf && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] flex flex-col">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                {selectedPdf.title}
+              </h3>
+              <button
+                onClick={closePdfPreview}
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-300"
+              >
+                <X className="w-6 h-6 text-gray-600 dark:text-gray-400" />
+              </button>
+            </div>
+
+            {/* Modal Content - Image Viewer */}
+            <div className="flex-1 min-h-0 overflow-auto flex items-center justify-center p-4">
+              <img
+                src={selectedPdf.url}
+                alt={selectedPdf.title}
+                className="block max-w-full max-h-[calc(90vh-10rem)] w-auto h-auto object-contain"
+              />
+            </div>
+
+            {/* Modal Footer */}
+            <div className="p-4 border-t border-gray-200 dark:border-gray-700 flex justify-end gap-3">
+              <button
+                onClick={closePdfPreview}
+                className="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg font-medium hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300"
+              >
+                Close
+              </button>
+              <a
+                href={selectedPdf.url}
+                download={selectedPdf.title}
+                className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors duration-300"
+              >
+                Download
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

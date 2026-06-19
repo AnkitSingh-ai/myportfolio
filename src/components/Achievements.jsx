@@ -4,6 +4,16 @@ import { Award, Trophy, FileText, Star, Sparkles, Zap, Eye } from 'lucide-react'
 export const Achievements = () => {
   const achievements = [
     {
+      type: 'achievement',
+      title: 'Paranox 2.0 Hackathon - Top 25 Finalist',
+      issuer: 'Paranox',
+      date: '2024',
+      description: 'Secured top 25 finalist ranking in Paranox 2.0 Hackathon, demonstrating innovation and problem-solving skills in a competitive environment',
+      icon: Trophy,
+      color: 'from-yellow-500 to-orange-500',
+      featured: true
+    },
+    {
       type: 'certification',
       title: 'Cybersecurity Analyst Certificate',
       issuer: 'Tata/Forage',
@@ -11,7 +21,7 @@ export const Achievements = () => {
       description: 'Professional certification in cybersecurity analysis, threat detection, and security best practices',
       icon: FileText,
       color: 'from-red-500 to-orange-500',
-      featured: true,
+      featured: false,
       certificateUrl: '/cybersecurity.png'
     },
     {
@@ -22,7 +32,7 @@ export const Achievements = () => {
       description: 'Selected as a member of the Google Developer Student Council, promoting developer community and technical learning',
       icon: Trophy,
       color: 'from-blue-500 to-cyan-500',
-      featured: true
+      featured: false
     },
     {
       type: 'achievement',
@@ -42,9 +52,6 @@ export const Achievements = () => {
       window.open(certificateUrl, '_blank', 'width=800,height=600,scrollbars=yes,resizable=yes')
     }
   }
-
-  const featuredAchievements = achievements.filter(item => item.featured)
-  const otherAchievements = achievements.filter(item => !item.featured)
 
   return (
     <section id="achievements" className="py-20 bg-gradient-to-br from-slate-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden">
@@ -69,120 +76,62 @@ export const Achievements = () => {
             </p>
           </div>
 
-          {/* Featured Achievements */}
-          <div className="mb-16">
-            <div className="flex items-center space-x-3 mb-8">
-              <Sparkles className="w-6 h-6 text-yellow-500" />
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Featured</h3>
-            </div>
-            <div className="grid md:grid-cols-2 gap-8">
-              {featuredAchievements.map((achievement, index) => (
-                <div
-                  key={achievement.title}
-                  onClick={() => openCertificate(achievement.certificateUrl)}
-                  className={`group relative bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 border border-white/20 hover:border-white/40 overflow-hidden ${
-                    achievement.certificateUrl ? 'cursor-pointer hover:scale-105' : ''
-                  }`}
-                >
-                  {/* Gradient overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`}></div>
-                  
-                  {/* Featured badge */}
+          {/* All Achievements in Single Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {achievements.map((achievement, index) => (
+              <div
+                key={achievement.title}
+                onClick={() => openCertificate(achievement.certificateUrl)}
+                className={`group relative bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 hover:border-white/40 overflow-hidden ${
+                  achievement.certificateUrl ? 'cursor-pointer hover:scale-105' : 'hover:scale-105'
+                } ${achievement.featured ? 'md:col-span-1 lg:row-span-1' : ''}`}
+              >
+                {/* Gradient overlay */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+                
+                {/* Featured badge */}
+                {achievement.featured && (
                   <div className="absolute top-4 right-4">
                     <div className="flex items-center space-x-1 bg-gradient-to-r from-yellow-500 to-orange-500 px-3 py-1 rounded-full">
                       <Zap className="w-3 h-3 text-white" />
                       <span className="text-xs font-semibold text-white">Featured</span>
                     </div>
                   </div>
+                )}
 
-                  <div className="relative z-10">
-                    {/* Icon */}
-                    <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${achievement.color} rounded-2xl mb-6 shadow-lg`}>
-                      <achievement.icon className="w-8 h-8 text-white" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="mb-4">
-                      <h4 className="text-2xl font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
-                        {achievement.title}
-                      </h4>
-                      <p className="text-lg font-semibold text-slate-600 dark:text-slate-300 mb-2">
-                        {achievement.issuer}
-                      </p>
-                      <span className="inline-block px-3 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-sm font-medium">
-                        {achievement.date}
-                      </span>
-                    </div>
-
-                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                      {achievement.description}
-                    </p>
-                    
-                    {/* Certificate indicator */}
-                    {achievement.certificateUrl && (
-                      <div className="mt-4 flex items-center space-x-2 text-blue-600 dark:text-blue-400">
-                        <Eye className="w-4 h-4" />
-                        <span className="text-sm font-medium">Click to view certificate</span>
-                      </div>
-                    )}
+                <div className="relative z-10">
+                  {/* Icon */}
+                  <div className={`inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r ${achievement.color} rounded-xl mb-4 shadow-md`}>
+                    <achievement.icon className="w-6 h-6 text-white" />
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Other Achievements */}
-          <div>
-            <div className="flex items-center space-x-3 mb-8">
-              <Trophy className="w-6 h-6 text-purple-500" />
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">All Achievements</h3>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {otherAchievements.map((achievement, index) => (
-                <div
-                  key={achievement.title}
-                  onClick={() => openCertificate(achievement.certificateUrl)}
-                  className={`group relative bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/20 hover:border-white/40 overflow-hidden ${
-                    achievement.certificateUrl ? 'cursor-pointer hover:scale-105' : ''
-                  }`}
-                >
-                  {/* Gradient overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${achievement.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+                  {/* Content */}
+                  <div className="mb-3">
+                    <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                      {achievement.title}
+                    </h4>
+                    <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">
+                      {achievement.issuer}
+                    </p>
+                    <span className="inline-block px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-xs font-medium">
+                      {achievement.date}
+                    </span>
+                  </div>
+
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                    {achievement.description}
+                  </p>
                   
-                  <div className="relative z-10">
-                    {/* Icon */}
-                    <div className={`inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r ${achievement.color} rounded-xl mb-4 shadow-md`}>
-                      <achievement.icon className="w-6 h-6 text-white" />
+                  {/* Certificate indicator */}
+                  {achievement.certificateUrl && (
+                    <div className="mt-3 flex items-center space-x-2 text-blue-600 dark:text-blue-400">
+                      <Eye className="w-3 h-3" />
+                      <span className="text-xs font-medium">Click to view certificate</span>
                     </div>
-
-                    {/* Content */}
-                    <div className="mb-3">
-                      <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
-                        {achievement.title}
-                      </h4>
-                      <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">
-                        {achievement.issuer}
-                      </p>
-                      <span className="inline-block px-2 py-1 bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-full text-xs font-medium">
-                        {achievement.date}
-                      </span>
-                    </div>
-
-                    <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                      {achievement.description}
-                    </p>
-                    
-                    {/* Certificate indicator */}
-                    {achievement.certificateUrl && (
-                      <div className="mt-3 flex items-center space-x-2 text-blue-600 dark:text-blue-400">
-                        <Eye className="w-3 h-3" />
-                        <span className="text-xs font-medium">Click to view certificate</span>
-                      </div>
-                    )}
-                  </div>
+                  )}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
 
           {/* Call to Action */}

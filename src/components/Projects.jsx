@@ -8,7 +8,7 @@ export const Projects = () => {
       description: 'A full-stack blogging platform supporting 20+ blog uploads with real-time search, detailed blog viewing, and an integrated AI-powered blog description generator. Built with responsive React.js frontend achieving 95+ Lighthouse score and 40% faster page loads.',
       image: '/bloggen-img.png',
       technologies: ['React.js', 'Node.js', 'MongoDB', 'JWT Auth', 'Tailwind CSS', 'AI Integration'],
-      liveUrl: 'https://github.com/AnkitSingh-ai/BlogGen',
+      liveUrl: 'https://bloggen-7d6l.onrender.com/',
       githubUrl: 'https://github.com/AnkitSingh-ai/BlogGen',
       featured: true,
       period: '02/2025 - 03/2025'
@@ -18,21 +18,12 @@ export const Projects = () => {
       description: 'A real-time traffic reporting platform empowering users to report, view, and track road incidents. Built with MERN stack, integrated Google Maps API, image uploads, and JWT authentication. Optimized UX with Framer Motion reducing form submission time by 45%.',
       image: '/raasta-sathi.png',
       technologies: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'Google Maps API', 'Multer', 'Framer Motion'],
-      liveUrl: 'https://github.com/AnkitSingh-ai/raasta-sathi',
+      liveUrl: 'https://raasta-sathi.onrender.com/',
       githubUrl: 'https://github.com/AnkitSingh-ai/raasta-sathi',
       featured: true,
       period: '04/2025 - Present'
     },
-    {
-      title: 'WanderLust',
-      description: 'A tourism booking platform using MERN stack enabling seamless trip bookings with real-time availability and secure payment integration. Optimized backend performance resulting in 40% reduction in booking processing time and supporting 10,000+ monthly active users.',
-      image: '/wanderlust.png',
-      technologies: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Payment Integration', 'RESTful APIs'],
-      liveUrl: 'https://github.com/AnkitSingh-ai/Wanderlust',
-      githubUrl: 'https://github.com/AnkitSingh-ai/Wanderlust',
-      featured: false,
-      period: '10/2024 - 11/2024'
-    }
+
   ]
 
   return (

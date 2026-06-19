@@ -34,13 +34,13 @@ export const About = () => {
               About Me
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              A passionate Computer Science undergraduate with a strong interest in full-stack web development and building impactful, user-friendly applications
+              A passionate Computer Science undergraduate with professional internship experience at Achyls Solution, specializing in full-stack web development and building impactful, user-friendly applications
             </p>
             <div className="mt-6 space-y-4">
               <div className="inline-flex items-center space-x-2 bg-blue-50 dark:bg-blue-900/20 rounded-full px-6 py-3 border border-blue-200 dark:border-blue-800">
                 <span className="text-blue-600 dark:text-blue-400 font-semibold">🎓 B.Tech Computer Science</span>
                 <span className="text-blue-500 dark:text-blue-300">•</span>
-                <span className="text-blue-600 dark:text-blue-400 font-semibold">7.58 CGPA</span>
+                <span className="text-blue-600 dark:text-blue-400 font-semibold">7.94 CGPA</span>
               </div>
               <div className="text-center">
                 <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -55,20 +55,13 @@ export const About = () => {
             <div className="space-y-8">
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  I am a passionate Computer Science undergraduate (2022–2026) at JSS Academy of Technical Education, Noida, 
-                  with a strong interest in full-stack web development and building impactful, user-friendly applications. 
-                  I specialize in modern technologies like React.js, Node.js, Express.js, and MongoDB, and I enjoy 
-                  transforming real-world problems into scalable digital solutions.
+                 I am a Computer Science graduate from JSS Academy of Technical Education, Noida, passionate about Full Stack Development and building scalable, user-focused web applications. Skilled in React.js, Node.js, Express.js, and MongoDB, I enjoy turning real-world problems into impactful digital solutions.
                 </p>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  My projects, including a traffic tracking app (Raasta Sathi) and a content-driven blogging platform, 
-                  reflect my ability to integrate clean UI, efficient backend systems, and real-time features. Beyond academics, 
-                  I have participated in hackathons and virtual job simulations (JP Morgan, Adobe), which helped me sharpen 
-                  my problem-solving, collaboration, and clean code practices in real-world scenarios.
+                  As a Software Developer Intern at Achyls Solutions, I developed a custom Jira plugin using React.js and Node.js, gaining hands-on experience in building production-ready applications and collaborating in a professional development environment.
                 </p>
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  I am constantly learning, exploring new tools, and striving to grow as a developer who can deliver 
-                  innovative solutions with measurable impact.
+                 My projects, including Raasta Sathi and BlogGen, showcase my ability to build responsive user interfaces, robust backend systems, and end-to-end web applications. I was also a finalist in the Paranox 2.0 Hackathon, where my team secured a Top 25 position for developing Raasta Sathi. I am continuously learning and striving to create innovative solutions that deliver real-world impact.
                 </p>
               </div>
 
@@ -116,7 +109,7 @@ export const About = () => {
                   <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">JSS Academy Of Technical Education</p>
                   <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">Sector 62, Noida</p>
                   <div className="flex items-center justify-between">
-                    <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">7.58 CGPA</span>
+                    <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">7.94 CGPA</span>
                     <span className="text-sm text-gray-500 dark:text-gray-400">2022-2026</span>
                   </div>
                 </div>
